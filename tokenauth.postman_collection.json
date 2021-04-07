@@ -1,0 +1,84 @@
+{
+	"id": "05e090e7-f21a-60ad-5082-7b0a955fb16f",
+	"name": "tokenauth",
+	"description": "",
+	"order": [
+		"58f08c95-a0a1-79ce-828d-ef7df7909519",
+		"f1cd738f-743f-5c0f-b903-1634269f5d3e"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1617554370487,
+	"owner": "955014",
+	"public": false,
+	"requests": [
+		{
+			"id": "58f08c95-a0a1-79ce-828d-ef7df7909519",
+			"headers": "",
+			"headerData": [],
+			"url": "https://localhost:5001/api/TokenAuth?user=admin&pwd=21232f297a57a5a743894a0e4a801fc3",
+			"queryParams": [
+				{
+					"key": "user",
+					"value": "admin",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "pwd",
+					"value": "21232f297a57a5a743894a0e4a801fc3",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "05e090e7-f21a-60ad-5082-7b0a955fb16f",
+			"data": [],
+			"dataMode": "params",
+			"name": "GenerateToken",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1617554416014,
+			"version": 2,
+			"responses": [],
+			"tests": "var responseJSON;\n\ntry { \n    responseJSON = JSON.parse(responseBody); \n    tests['response is valid JSON'] = true;\n}\ncatch (e) { \n    responseJSON = {}; \n    tests['response is valid JSON'] = false;\n}\n\ntests['response json contains headers'] = _.has(responseJSON, 'headers');\ntests['response json contains args'] = _.has(responseJSON, 'args');\ntests['response json contains url'] = _.has(responseJSON, 'url');\n\ntests['args key contains argument passed as url parameter'] = ('test' in responseJSON.args);\ntests['args passed via request url params has value \"123\"'] = (_.get(responseJSON, 'args.test') === \"123\");",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "f1cd738f-743f-5c0f-b903-1634269f5d3e",
+			"headers": "token: ad792cdc-4381-48be-ab26-4980811338bc\n",
+			"headerData": [
+				{
+					"key": "token",
+					"value": "ad792cdc-4381-48be-ab26-4980811338bc",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://localhost:5001/ApiConsumer/VerifyToken",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": "",
+			"method": "GET",
+			"collectionId": "05e090e7-f21a-60ad-5082-7b0a955fb16f",
+			"data": [],
+			"dataMode": "params",
+			"name": "ValidateToken",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1617554489876,
+			"version": 2,
+			"responses": [],
+			"tests": "var responseJSON;\n\ntry { \n    responseJSON = JSON.parse(responseBody); \n    tests['response is valid JSON'] = true;\n}\ncatch (e) { \n    responseJSON = {}; \n    tests['response is valid JSON'] = false;\n}\n\ntests['response json contains headers'] = _.has(responseJSON, 'headers');\ntests['response json contains args'] = _.has(responseJSON, 'args');\ntests['response json contains url'] = _.has(responseJSON, 'url');\n\ntests['args key contains argument passed as url parameter'] = ('test' in responseJSON.args);\ntests['args passed via request url params has value \"123\"'] = (_.get(responseJSON, 'args.test') === \"123\");",
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
